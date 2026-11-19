@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    // The worker consumes the API's persistence layer (models, storage, env)
+    // directly instead of duplicating schemas, so the compilation root covers
+    // both apps/. Output mirrors that: dist/worker/src/... and dist/api/src/...
+    "rootDir": "..",
+    "types": ["node"]
+  },
+  "include": [
+    "src/**/*",
+    "../api/src/models/**/*",
+    "../api/src/storage/**/*",
+    "../api/src/config/env.ts",
+    "../api/src/config/redis.ts",
+    "../api/src/config/queues.ts",
+    "../api/src/lib/logger.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

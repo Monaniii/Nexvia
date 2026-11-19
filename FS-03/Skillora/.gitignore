@@ -1,0 +1,39 @@
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+
+# environment & secrets
+.env
+.env.*
+!.env.example
+!.env.test
+*.pem
+*.key
+
+# local dev data
+data/
+.smoke/
+.tmp/
+tmp/
+*.local
+
+# tooling
+.tools/
+playwright-report/
+test-results/
+blob-report/
+.vite/
+.eslintcache
+
+# logs & os
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# generated media artifacts
+storage/media/**
+!storage/media/.gitkeep
+apps/web/dist/

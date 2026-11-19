@@ -1,0 +1,45 @@
+{
+  "name": "skillora",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Skillora - full-stack Learning Management System with live classes (MERN + WebRTC + FFmpeg + HLS + BullMQ + Redux Toolkit)",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.10.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "npm run build -w @skillora/shared && npm run build -w @skillora/api && npm run build -w @skillora/worker && npm run build -w @skillora/web",
+    "build:shared": "npm run build -w @skillora/shared",
+    "dev": "npm-run-all --parallel dev:api dev:worker dev:web",
+    "dev:api": "npm run dev -w @skillora/api",
+    "dev:worker": "npm run dev -w @skillora/worker",
+    "dev:web": "npm run dev -w @skillora/web",
+    "start:api": "npm run start -w @skillora/api",
+    "start:worker": "npm run start -w @skillora/worker",
+    "typecheck": "npm run typecheck -w @skillora/shared && npm run typecheck -w @skillora/api && npm run typecheck -w @skillora/worker && npm run typecheck -w @skillora/web",
+    "lint": "eslint .",
+    "test": "npm run test:unit && npm run test:api",
+    "test:unit": "vitest run --project unit",
+    "test:api": "npm run build:shared && vitest run --project api",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "seed": "npm run seed -w @skillora/api",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down -v",
+    "verify": "npm run lint && npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.5",
+    "eslint": "^9.17.0",
+    "npm-run-all2": "^7.0.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.19.1",
+    "vitest": "^2.1.8"
+  }
+}
